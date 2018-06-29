@@ -66,5 +66,8 @@ freecat = id
 
 main :: IO ()
 main = do
-	putStrLn $ show $ (toCcc' (\x y -> (y, x))) "larry" "fred" -- Conversion of lambda to itself. Seems to work
-	putStrLn $ show $ freecat $ ((toCcc' (\x -> x))) -- Does not work
+	putStrLn $ show $ (toCcc' (\(x, y) -> (y, x)))  ("larry", "fred")-- Conversion of lambda to itself. Seems to work
+	-- putStrLn $ show $ freecat $ ((toCcc' (\x -> x))) -- Does not work
+	putStrLn $ show $ (((toCcc' (\x -> x))) :: FreeCat a a ) -- does not work
+	putStrLn $ show $ (id :: FreeCat' a a) -- works
+	putStrLn $ show $ (id :: FreeCat a a) -- works
